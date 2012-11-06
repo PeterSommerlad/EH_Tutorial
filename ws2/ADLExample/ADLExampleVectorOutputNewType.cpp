@@ -1,3 +1,4 @@
+#if 0
 #include <iostream>
 #include <vector>
 #include <iterator>
@@ -19,3 +20,4 @@ void works_with_inheriting_ctors(){
     using outv=std::ostream_iterator<X::vec>;
     copy(vv.begin(),vv.end(),outv{std::cout,"\n"});
 }
+#endif

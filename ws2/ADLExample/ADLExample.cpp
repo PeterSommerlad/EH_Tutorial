@@ -22,7 +22,7 @@ int main(){
     g(b);//::g
     two::g(a); // needs two::
     void works_with_inheriting_ctors();
-    works_with_inheriting_ctors();
+//    works_with_inheriting_ctors();
 }
 
 
