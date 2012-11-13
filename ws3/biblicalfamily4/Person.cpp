@@ -33,28 +33,6 @@ void Person::killChild(PersonPtr child) {
 	}
 }
 
-void Person::killMe() {
-	// here shared_from_this is possible
-	auto me=myLock();
-	if (!me) return; // already dead
-	auto realfather=father.lock();
-	if (realfather) realfather->killChild(me);
-	auto realmother=mother.lock();
-	if (realmother) realmother->killChild(me);
-	for(PersonPtr son:children){
-		if (son) {
-		if (me == son->father.lock()) son->father.reset();
-		if (me == son->mother.lock()) son->mother.reset();
-		}
-	}
-	children.clear();
-}
-
-Person::~Person() {
-	std::cout << "killing me: "<< name << '\n';
-	killMe(); // can not call shared_from_this() in dtor!
-}
-
 PersonPtr Person::myLock() {
 	try {
 		auto me=shared_from_this(); // throws when called from dtor!
@@ -63,3 +41,20 @@ PersonPtr Person::myLock() {
 	std::cout << "++++already dead? " << name<< '\n';
 	return PersonPtr{}; // already dead
 }
+
+void Person::killMe() {
+	// here shared_from_this is possible
+	auto me=myLock();
+	if (!me) return; // already dead
+	auto realfather=father.lock();
+	if (realfather) realfather->killChild(me);
+	auto realmother=mother.lock();
+	if (realmother) realmother->killChild(me);
+	children.clear();
+}
+
+Person::~Person() {
+	std::cout << "killing me: "<< name << '\n';
+	//killMe(); // can not call shared_from_this() in dtor!
+}
+

@@ -32,7 +32,7 @@ void Person::killChild(PersonPtr child) {
 }
 
 void Person::killMe() {
-	// here shared_from_this is possible
+	// here shared_from_this is possible, not in ctor or dtor
 	auto me=shared_from_this();
 	if (father) father->killChild(me);
 	if (mother) mother->killChild(me);

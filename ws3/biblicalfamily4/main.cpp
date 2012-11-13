@@ -16,7 +16,7 @@ int main() {
 	addson("Seth",adam, eve);
 	adam->print(std::cout);
 	eve->print(std::cout);
-	// how to have Cain kill Abel?
+	// Cain kills Abel: need to remove from parents
 	{
 		auto abel=eve->findChild("Abel");
 		eve->killChild(abel);
@@ -24,9 +24,9 @@ int main() {
 		abel->print(std::cout);
 	}
 	eve->print(std::cout);
-	// how can we kill Adam and Eve?
+	// kill Adam by forgetting last reference
 	{
-		adam->killMe();
+		std::cout << "killing Adam:\n";
 		adam->print(std::cout);
 		adam.reset();
 	}
