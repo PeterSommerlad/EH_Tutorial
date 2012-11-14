@@ -1,11 +1,8 @@
 #include <set>
-#include <functional>
 #include <algorithm>
 #include <cctype>
 #include <iterator>
 #include <iostream>
-
-
 
 struct caseless{
 	using string=std::string;
@@ -17,26 +14,8 @@ struct caseless{
 		});
 	}
 };
-
-
-
-
-
-
-
-
-
 int main(){
 	std::set<int,std::greater<int>> reverse_int_set{};
-
-
-
-
-
-
-
-
-
 	using std::string;
 	using caseless_set=std::multiset<string,caseless>;
 	using in=std::istream_iterator<string>;
